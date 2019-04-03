@@ -15,23 +15,24 @@ function simulate_stringify(obj) {
         }
         return String(obj);
     }
-
     let res = [];
     let array = Array.isArray(obj);
-    if(array) {
-        obj.forEach(o => {
-            if(typeof o === 'object') {
-                simulate_stringify(o);
-            }
-            if(typeof o === 'symbol' || typeof o === 'undefined' || typeof o === 'function') {
-                res.push(`${o}`);
-            }else {
-                res.push(String(o))
-            }
-        });
+    for(let k in obj) {
+        let v = obj[k];
+        let type_o = typeof v;
+        if(/undefined|string|function/.test(type_o)) {
+            v = '"' + v + '"';
+        }else if(type_o === 'object'){
+            v = simulate_stringify(v);
+        }
+        
+        res.push((array ? "" : '"' + k + '":') + String(v));
     }
-    return res;
+    return  (array ? "[" : "{") + String(res) + (array ? "]" : "}")
 }
 
-let a = [3];
-console.log(typeof a, simulate_stringify(a));
+
+
+let a = [3, true, undefined, function dd(){}, {c: 1}];
+let c = {a:1, b: {d: 2}}
+console.log(typeof a, simulate_stringify(c));
