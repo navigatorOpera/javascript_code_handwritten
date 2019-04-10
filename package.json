@@ -1,0 +1,19 @@
+{
+  "name": "simulate",
+  "version": "1.0.0",
+  "description": "javascript code handwritten",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/navigatorOpera/javascript_code_handwritten.git"
+  },
+  "author": "navigatorOpera",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/navigatorOpera/javascript_code_handwritten/issues"
+  },
+  "homepage": "https://github.com/navigatorOpera/javascript_code_handwritten#readme"
+}
