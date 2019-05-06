@@ -53,3 +53,7 @@ function runFn(fn, a, b) {
     }
 }
 
+function resolve(v, promise) {
+    
+}
+
