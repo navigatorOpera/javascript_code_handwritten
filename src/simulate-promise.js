@@ -86,4 +86,13 @@ Promise.prototype.then = function(a/* fulfilled*/, b/* rejected*/) {
     return new Promise(noop);
 };
 
+Promise.prototype.done = function(fulfilled, rejected) {
+    let self = arguments.length ? this.then.apply(this, arguments) : this;
+    self.then(null, err => {
+        setTimeout(() => {
+            throw err;
+        }, 0);
+    })
+}
+
 
