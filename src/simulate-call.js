@@ -1,26 +1,20 @@
-function _call(obj) {
-    let func = this;
-    obj.func = func;
-    let args = Array.from(arguments).slice(1);
-    obj.func(...args);
-}
-
 let test = {
     name: 'navigator'
-}
+};
 
 function greet(param, param1) {
-    console.log(param, param1,this.name);
+    console.log(param, param1, this.name);
     return this.name;
 }
 
 Function.prototype._call = function(obj) {
     let func = this;
-    obj.func = func;
+    let _obj = Object.create(obj); //可以排除obj为freeze的情况
+    _obj.func = func;
     let args = Array.from(arguments).slice(1);
-    let result = obj.func(...args);
-    delete obj.func;
+    let result = _obj.func(...args);
+    delete _obj;
     return result;
-}
+};
 
 console.log(greet._call(test, 'hello', 'morning'));
